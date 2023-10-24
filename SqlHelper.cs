@@ -35,9 +35,10 @@ namespace SqlServerHelper
                 MessageBox.Show(er.Message.ToString());
             }
         }
+
         public static void GenerateTables(string db, string server)
         {
-            //generate tables from script (SQL Server Management Studio generated )
+            // Generate tables from script (SQL Server Management Studio generated )
             try
             {
                 string script = File.ReadAllText(@"tables.sql");
@@ -68,15 +69,15 @@ namespace SqlServerHelper
                 MessageBox.Show(er.Message.ToString());
             }
         }
+
         public static void GenerateFields(string db, string server)
         {
-           //Generate missing field from sql script
-           // the script contain following .....
-             //IF NOT EXISTS (SELECT 1  FROM SYS.COLUMNS WHERE  
-             //OBJECT_ID = OBJECT_ID(N'[dbo].table') AND name = 'fieldname')
-             //BEGIN
-             //ALTER TABLE [dbo].[table] ADD fieldname type
-             //END
+            // Generate missing field from sql script
+            // the script contain following .....
+            // IF NOT EXISTS (SELECT 1  FROM SYS.COLUMNS WHERE OBJECT_ID = OBJECT_ID(N'[dbo].table') AND name = 'fieldname')
+            // BEGIN
+            //     ALTER TABLE [dbo].[table] ADD fieldname type
+            // END
         
             try
             {
@@ -103,6 +104,7 @@ namespace SqlServerHelper
                 MessageBox.Show(er.Message.ToString());
             }
         }
+
         public static bool IsDBExist(string server, string db)
         {
             List<string> list = new List<string>();
@@ -148,7 +150,7 @@ namespace SqlServerHelper
 
         public static List<string> GetDatabaseList(string server)
         {
-            //List database on the server /local machine
+            // List database on the server /local machine
             List<string> list = new List<string>();
 
             // Open connection to the database
@@ -172,12 +174,11 @@ namespace SqlServerHelper
                 con.Close();
             }
             return list;
-
         }
         
         public static IEnumerable<string> ListLocalSqlInstances()
         {
-            //List all local SQL instances using registry information
+            // List all local SQL instances using registry information
             if (Environment.Is64BitOperatingSystem)
             {
                 using (var hive = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
